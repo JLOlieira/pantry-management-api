@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema(
     quantity: { type: Number, default: 0 },
     unit: String,
     category: String,
-    location: String,
+    room: String,
     groupId: String, // já preparando pro futuro
   },
   {

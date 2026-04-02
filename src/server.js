@@ -1,13 +1,10 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { conectDB } from "./db.js";
+import connectDB from "./config/db.js";
 
 import productRoutes from "./routes/productRoutes.js";
 
-app.use("/products", productRoutes);
-
-conectDB();
 dotenv.config();
 
 const app = express();
@@ -15,6 +12,10 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
+
+app.use("/products", productRoutes);
+
+connectDB();
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
