@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: pantry-management-api
+    env: node
+    plan: starter
+    region: oregon
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGO_URI
+        fromDatabase: null
+      - key: NODE_ENV
+        value: production
