@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import Group from "../models/Group.js";
 
 export const register = async (req, res) => {
   const { name, email, password } = req.body;
@@ -63,5 +64,17 @@ export const logout = async (req, res) => {
     });
   } catch (err) {
     res.status(500).json({ message: "Error logging out user" });
+  }
+};
+
+export const getUserGroups = async (req, res) => {
+  const { id } = req.user;
+
+  try {
+    const groups = await Group.find({ users: id });
+
+    res.status(200).json(groups);
+  } catch (err) {
+    res.status(500).json({ message: "Error getting user groups" });
   }
 };

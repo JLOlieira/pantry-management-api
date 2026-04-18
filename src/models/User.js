@@ -14,6 +14,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  groups: [{ type: mongoose.Schema.Types.ObjectId, ref: "Group" }],
 });
 
 export default mongoose.model("User", UserSchema);

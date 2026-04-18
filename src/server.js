@@ -5,6 +5,7 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 
 import productRoutes from "./routes/productRoutes.js";
+import groupRoutes from "./routes/groupRoutes.js";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 
 app.use("/products", productRoutes);
+app.use("/groups", groupRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
