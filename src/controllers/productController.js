@@ -12,7 +12,7 @@ export const createProduct = async (req, res) => {
   const product = await Product.create({ ...req.body });
   await Group.updateOne(
     { _id: req.body.group },
-    { $push: { products: product._id } },
+    { $push: { products: product } },
   );
   res.status(201).json(product);
 };
