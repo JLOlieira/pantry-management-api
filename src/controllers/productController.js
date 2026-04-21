@@ -1,4 +1,5 @@
 import Product from "../models/Product.js";
+import Group from "../models/Group.js";
 
 export const getProducts = async (req, res) => {
   const products = await Product.find();
@@ -6,9 +7,13 @@ export const getProducts = async (req, res) => {
   console.log(products);
 };
 
+// Criar um novo produto na lista do grupo, o groupId é passado no corpo da requisição
 export const createProduct = async (req, res) => {
-  const product = new Product(req.body);
-  await product.save();
+  const product = await Product.create({ ...req.body });
+  await Group.updateOne(
+    { _id: req.body.group },
+    { $push: { products: product._id } },
+  );
   res.status(201).json(product);
 };
 
